@@ -177,7 +177,6 @@ public class CardValidator {
             return false;
         }
 
-        //Luhn algorithm to validate card numbers
         int[] ints = new int[number.length()];
         for (int i = 0; i < number.length(); i++) {
             ints[i] = Integer.parseInt(number.substring(i, i + 1));
