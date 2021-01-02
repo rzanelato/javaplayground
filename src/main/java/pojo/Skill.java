@@ -1,26 +1,29 @@
 package pojo;
 
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Skill {
-    
-    private String name;
-    private String code;
-    
-    public Skill(String name, String code) {
+    @JsonProperty("name")
+    private final String name;
+
+    @JsonProperty("code")
+    private final String code;
+
+    public Skill(
+            @JsonProperty("name") final String name,
+            @JsonProperty("code") final String code
+    ) {
         this.name = name;
         this.code = code;
     }
-    
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public String getCode() {
-        return code;
-    }
-    public void setCode(String code) {
-        this.code = code;
-    }
-    
 }

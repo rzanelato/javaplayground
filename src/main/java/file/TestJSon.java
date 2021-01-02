@@ -1,55 +1,88 @@
 package file;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 
 import org.apache.commons.io.FileUtils;
-import org.json.CDL;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.json.*;
+import pojo.Person;
+import pojo.Skill;
 
 public class TestJSon {
-	
-	public static void main(String[] args) {
-		 //String jsonString = "{\"archive\": [{\"field1\": 11,\"field2\": 12,\"field3\": 13},{\"field1\": 21,\"field2\": 22,\"field3\": 23},{\"field1\": 31,\"field2\": 32,\"field3\": 33}]}";
-	        try {
-	        	String jsonString = jsonTeste();
-	        	JSONObject output;
-	            output = new JSONObject(jsonString);
 
+    public static void main(String[] args) {
+        convertObjWithList();
+        oldTest();
+    }
 
-	            JSONArray docs = output.getJSONArray("archive");
-	            
-	            for(String str : JSONObject.getNames(output)) {
-	            	
-	            	System.out.println(str);
-	            }
-	            
-	            Iterator<?> inter = docs.iterator();
-	            while (inter.hasNext()) {
-	            	Object obj = inter.next();
-					System.out.println(obj);
-					
-				}
-	            JSONObject jobj = docs.getJSONObject(2);
-	            System.out.println(jobj.get("field2"));
-	            
-	            String[] nomes = JSONObject.getNames(jobj);
-	            
-	            for (String string : nomes) {
-	            	System.out.println(string +":"+ jobj.get(string));
-					
-				}
-	            
-	            
+    private static void convertObjWithList() {
+        Person person = getPerson();
 
-	            File file = new File("/temp/fromJSON.xls");
-	            String csv = CDL.toString(docs);
-	            System.out.println("csv:");
-	            System.out.println(csv);
-	            FileUtils.writeStringToFile(file, csv, "UTF-8");
+        JSONObject jsonObject = new JSONObject(person);
+        System.out.println("OBJ: " + jsonObject.toString());
+        System.out.println();
+        String converted = new JSONArray(person.getSkills()).toString();
+        System.out.println("List:\n" + converted);
+        System.out.println();
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            List<Skill> skills = mapper.readValue(converted, new TypeReference<List<Skill>>() {});
+            // mapper.getTypeFactory() .constructCollectionType(List.class, Skill.class)
+
+            skills.forEach(System.out::println);
+        } catch (JsonProcessingException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    private static Person getPerson() {
+        Skill skill1 = new Skill("stamina", "100");
+        Skill skill2 = new Skill("power", "150");
+        Skill skill3 = new Skill("speed", "50");
+        List<Skill> skills = Arrays.asList(skill1, skill2, skill3);
+        return new Person("Zana", 36, "comedian", skills);
+    }
+
+    private static void oldTest() {
+        try {
+            String jsonString = jsonTeste();
+            JSONObject output;
+            output = new JSONObject(jsonString);
+
+            JSONArray docs = output.getJSONArray("archive");
+
+            for (String str : JSONObject.getNames(output)) {
+
+                System.out.println(str);
+            }
+
+            Iterator<?> inter = docs.iterator();
+            while (inter.hasNext()) {
+                Object obj = inter.next();
+                System.out.println(obj);
+
+            }
+            JSONObject jobj = docs.getJSONObject(2);
+            System.out.println(jobj.get("field2"));
+
+            String[] nomes = JSONObject.getNames(jobj);
+
+            for (String string : nomes) {
+                System.out.println(string + ":" + jobj.get(string));
+
+            }
+
+            //File file = new File("/temp/fromJSON.csv");
+            String csv = CDL.toString(docs);
+            System.out.println("csv:");
+            System.out.println(csv);
+            //FileUtils.writeStringToFile(file, csv, "UTF-8");
 	            /*
 	            FileUtils.writeStringToFile(file, "\tTeste", "UTF-8", true);
 	            FileUtils.writeStringToFile(file, "\tOutro", "UTF-8", true);
@@ -57,17 +90,16 @@ public class TestJSon {
 	        } catch (IOException e) {
 	        	e.printStackTrace();
 	            */
-	        } catch (JSONException e) {
-	            e.printStackTrace();
-	        } catch (IOException e) {
-				e.printStackTrace();
-			}  
-		 
-	}
-	
-	
-	private static String jsonTeste() {
-		return "{\"id\": \"0001\\\",\\\"type\\\": \\\"donut\\\",\\\"name\\\": \\\"Cake\\\",\\\"ppu\\\": 0.55,\\\"batters\\\":{\\\"batter\\\":[{ \\\"id\\\": \\\"1001\\\", \\\"type\\\": \\\"Regular\\\" },{ \\\"id\\\": \\\"1002\\\", \\\"type\\\": \\\"Chocolate\\\" },{ \\\"id\\\": \\\"1003\\\", \\\"type\\\": \\\"Blueberry\\\" },{ \\\"id\\\": \\\"1004\\\", \\\"type\\\": \\\"Devil's Food\\\" }]},\\\"topping\\\":[{ \\\"id\\\": \\\"5001\\\", \\\"type\\\": \\\"None\\\" },{ \\\"id\\\": \\\"5002\\\", \\\"type\\\": \\\"Glazed\\\" },{ \\\"id\\\": \\\"5005\\\", \\\"type\\\": \\\"Sugar\\\" },{ \\\"id\\\": \\\"5007\\\", \\\"type\\\":\\\"Powdered Sugar\\\" },{ \\\"id\\\": \\\"5006\\\", \\\"type\\\": \\\"Chocolate with Sprinkles\\\" },{ \\\"id\\\": \\\"5003\\\", \\\"type\\\": \\\"Chocolate\\\" },{ \\\"id\\\": \\\"5004\\\", \\\"type\\\": \\\"Maple\\\" }]},{\\\"id\\\": \\\"0002\\\",\\\"type\\\": \\\"donut\\\",\\\"name\\\":\\\"Raised\\\",\\\"ppu\\\": 0.55,\\\"batters\\\":{\\\"batter\\\":[{ \\\"id\\\": \\\"1001\\\", \\\"type\\\": \\\"Regular\\\" }]},\\\"topping\\\":[{ \\\"id\\\": \\\"5001\\\", \\\"type\\\": \\\"None\\\" },{ \\\"id\\\": \\\"5002\\\", \\\"type\\\": \\\"Glazed\\\" },{ \\\"id\\\":\\\"5005\\\", \\\"type\\\": \\\"Sugar\\\" },{ \\\"id\\\": \\\"5003\\\", \\\"type\\\": \\\"Chocolate\\\" },{ \\\"id\\\": \\\"5004\\\", \\\"type\\\": \\\"Maple\\\" }]},{\\\"id\\\": \\\"0003\\\",\\\"type\\\": \\\"donut\\\",\\\"name\\\": \\\"Old Fashioned\\\",\\\"ppu\\\": 0.55,\\\"batters\\\":{\\\"batter\\\":[{ \\\"id\\\": \\\"1001\\\", \\\"type\\\": \\\"Regular\\\" },{ \\\"id\\\": \\\"1002\\\", \\\"type\\\": \\\"Chocolate\\\" }]},\\\"topping\\\":[{ \\\"id\\\": \\\"5001\\\", \\\"type\\\": \\\"None\\\" },{ \\\"id\\\": \\\"5002\\\", \\\"type\\\": \\\"Glazed\\\" },{ \\\"id\\\":\\\"5003\\\", \\\"type\\\": \\\"Chocolate\\\" },{ \\\"id\\\": \\\"5004\\\", \\\"type\\\": \\\"Maple\\\" }]}";
-	}
+        } catch (JSONException e) {
+        //    e.printStackTrace();
+        //} catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static String jsonTeste() {
+        //return "{\"id\": \"0001\\\",\\\"type\\\": \\\"donut\\\",\\\"name\\\": \\\"Cake\\\",\\\"ppu\\\": 0.55,\\\"batters\\\":{\\\"batter\\\":[{ \\\"id\\\": \\\"1001\\\", \\\"type\\\": \\\"Regular\\\" },{ \\\"id\\\": \\\"1002\\\", \\\"type\\\": \\\"Chocolate\\\" },{ \\\"id\\\": \\\"1003\\\", \\\"type\\\": \\\"Blueberry\\\" },{ \\\"id\\\": \\\"1004\\\", \\\"type\\\": \\\"Devil's Food\\\" }]},\\\"topping\\\":[{ \\\"id\\\": \\\"5001\\\", \\\"type\\\": \\\"None\\\" },{ \\\"id\\\": \\\"5002\\\", \\\"type\\\": \\\"Glazed\\\" },{ \\\"id\\\": \\\"5005\\\", \\\"type\\\": \\\"Sugar\\\" },{ \\\"id\\\": \\\"5007\\\", \\\"type\\\":\\\"Powdered Sugar\\\" },{ \\\"id\\\": \\\"5006\\\", \\\"type\\\": \\\"Chocolate with Sprinkles\\\" },{ \\\"id\\\": \\\"5003\\\", \\\"type\\\": \\\"Chocolate\\\" },{ \\\"id\\\": \\\"5004\\\", \\\"type\\\": \\\"Maple\\\" }]},{\\\"id\\\": \\\"0002\\\",\\\"type\\\": \\\"donut\\\",\\\"name\\\":\\\"Raised\\\",\\\"ppu\\\": 0.55,\\\"batters\\\":{\\\"batter\\\":[{ \\\"id\\\": \\\"1001\\\", \\\"type\\\": \\\"Regular\\\" }]},\\\"topping\\\":[{ \\\"id\\\": \\\"5001\\\", \\\"type\\\": \\\"None\\\" },{ \\\"id\\\": \\\"5002\\\", \\\"type\\\": \\\"Glazed\\\" },{ \\\"id\\\":\\\"5005\\\", \\\"type\\\": \\\"Sugar\\\" },{ \\\"id\\\": \\\"5003\\\", \\\"type\\\": \\\"Chocolate\\\" },{ \\\"id\\\": \\\"5004\\\", \\\"type\\\": \\\"Maple\\\" }]},{\\\"id\\\": \\\"0003\\\",\\\"type\\\": \\\"donut\\\",\\\"name\\\": \\\"Old Fashioned\\\",\\\"ppu\\\": 0.55,\\\"batters\\\":{\\\"batter\\\":[{ \\\"id\\\": \\\"1001\\\", \\\"type\\\": \\\"Regular\\\" },{ \\\"id\\\": \\\"1002\\\", \\\"type\\\": \\\"Chocolate\\\" }]},\\\"topping\\\":[{ \\\"id\\\": \\\"5001\\\", \\\"type\\\": \\\"None\\\" },{ \\\"id\\\": \\\"5002\\\", \\\"type\\\": \\\"Glazed\\\" },{ \\\"id\\\":\\\"5003\\\", \\\"type\\\": \\\"Chocolate\\\" },{ \\\"id\\\": \\\"5004\\\", \\\"type\\\": \\\"Maple\\\" }]}";
+        return "{\"archive\": [{\"field1\": 11,\"field2\": 12,\"field3\": 13},{\"field1\": 21,\"field2\": 22,\"field3\": 23},{\"field1\": 31,\"field2\": 32,\"field3\": 33}]}";
+    }
 
 }
