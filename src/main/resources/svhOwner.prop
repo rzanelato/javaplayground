@@ -1,0 +1,6 @@
+# Configuraion acceso a la base de datos
+#PRE SVH OWNER
+dataSource.driverClassName=oracle.jdbc.driver.OracleDriver
+dataSource.url=jdbc:oracle:thin:@172.25.55.66:1522:SLXPRE10
+dataSource.username=SVH_OWNER
+dataSource.password=Changeme_123456789

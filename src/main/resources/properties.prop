@@ -1,0 +1,2 @@
+login.url=http://localhost:8080/ServidorImagenesSDI/loginService.svr
+login.proxy=http://localhost:7001/ServicesSDI/Login

@@ -1,0 +1,17 @@
+# Configuraion acceso a la base de datos
+#PRE
+dataSource.driverClassName=oracle.jdbc.driver.OracleDriver
+dataSource.url=jdbc:oracle:thin:@172.25.55.66:1522:SLXPRE10
+dataSource.username=SDI_OWNER
+dataSource.password=SDI_OWNER
+
+# Configuración acceso a Web Services R3
+#PRE
+webservice.listaentidad=zlistaentidadPRE
+webservice.uasdeur=Z_GET_UAS_2_PRE
+webservice.ursdepromo=zlistaurdepromocionPRE
+
+#PRO
+#webservice.listaentidad=zlistaentidad
+#webservice.uasdeur=Z_GET_UAS_2
+#webservice.ursdepromo=zlistaurdepromocion

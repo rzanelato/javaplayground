@@ -1,0 +1,8 @@
+#Fri Nov 06 12:00:12 CET 2020
+dataSource.username=SDI_OWNER
+webservice.listaentidad=zlistaentidadPRE
+dataSource.url=jdbc\:oracle\:thin\:@172.25.55.66\:1522\:SLXPRE10
+webservice.ursdepromo=zlistaurdepromocionPRE
+dataSource.password=SDI_OWNER
+dataSource.driverClassName=oracle.jdbc.driver.OracleDriver
+webservice.uasdeur=Z_GET_UAS_2_PRE

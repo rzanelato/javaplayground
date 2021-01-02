@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapping PUBLIC "-//EXOLAB/Castor Mapping DTD Version 1.0//EN" "http://castor.org/mapping.dtd">
+
+<mapping>
+	<class name="castor.ImagenAppFotosDTO">
+		<map-to xml="entrada" />
+   		<field name="id" type="java.lang.String">
+      		<bind-xml name="id" node="element"/>
+   		</field>
+		<field name="user" type="java.lang.String">
+      		<bind-xml name="user" node="element"/>
+   		</field>
+   		
+   		<field name="token" type="java.lang.String">
+      		<bind-xml name="token" node="element"/>
+   		</field>
+   		
+   		<field name="tag" type="java.lang.String">
+      		<bind-xml name="tag" node="element"/>
+   		</field>
+   		<field name="subtag" type="java.lang.String">
+      		<bind-xml name="subtag" node="element"/>
+   		</field>
+   		
+   		<field name="tipologia" type="java.lang.String">
+      		<bind-xml name="tipologia" node="element"/>
+   		</field>
+   		<field name="nombre" type="java.lang.String">
+      		<bind-xml name="nombre" node="element"/>
+   		</field>
+   		
+   		<field name="content" type="bytes">
+      		<bind-xml name="content" node="element"/>
+   		</field>
+   		
+	</class>
+
+</mapping>

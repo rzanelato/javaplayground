@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//log4j/log4j Configuration//EN" "log4j.dtd">
+ 
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+ 
+    <appender name="console" class="org.apache.log4j.ConsoleAppender">
+       <param name="ImmediateFlush" value="true"/>
+       <param name="Threshold" value="INFO"/>
+       <layout class="org.apache.log4j.PatternLayout">
+          <param name="ConversionPattern" value="%d{[dd/MM/yyyy][HH:mm:ss,SSS]} %-5p %c{1}.%M(%L): %m%n"/>
+       </layout>
+    </appender>
+  
+    <appender name="logfile" class="org.apache.log4j.RollingFileAppender">
+       <param name="File" value="/temp/testeLog4j.log" />
+       <param name="ImmediateFlush" value="true"/>
+       <param name="threshold" value="DEBUG"/>
+       <param name="MaxBackupIndex" value="10"/>
+       <param name="MaxFileSize" value="5Mb"/>
+       <layout class="org.apache.log4j.PatternLayout">
+          <param name="ConversionPattern" value="%d{[dd/MM/yyyy][HH:mm:ss,SSS]} %-5p %c{1}.%M(%L): %m%n"/>
+       </layout>
+    </appender>
+ 
+	<logger name="es.lacaixa.svh.sdi">
+		<level value="INFO"/> 
+	</logger>
+	
+	<logger name="es.lacaixa.svh.sdi" additivity="true">
+			<level value="error"/>
+			<appender-ref ref="console" />
+	</logger>
+    <root>
+        <priority value="DEBUG"/>
+        <appender-ref ref="console" />
+        <appender-ref ref="logfile" />
+    </root>
+     
+</log4j:configuration>

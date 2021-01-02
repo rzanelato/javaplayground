@@ -1,0 +1,15 @@
+# Configuraion acceso a la base de datos
+#PRODUCCION
+dataSource.driverClassName=oracle.jdbc.driver.OracleDriver
+#dataSource.url=jdbc:oracle:thin:@//porsvdbp-scanc1.lacaixa.es:1561/SLXPRO1P
+dataSource.url=jdbc:oracle:thin:@172.25.55.66:1522:SLXPRE10
+dataSource.username=SDI_OWNER
+dataSource.password=SDI_OWNER
+
+# Configuración acceso a Web Services R3
+#PRO
+webservice.listaentidad=zlistaentidad
+webservice.uasdeur=Z_GET_UAS_2
+webservice.ursdepromo=zlistaurdepromocion
+
+

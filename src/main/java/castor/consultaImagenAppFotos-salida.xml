@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE mapping PUBLIC "-//EXOLAB/Castor Mapping DTD Version 1.0//EN" "http://castor.org/mapping.dtd">
+
+<mapping>
+	<class name="castor.RespuestaConsultaImagenAppFotos">
+		<map-to xml="salida" />
+		
+   		<field name="codigo" type="java.lang.String">
+      		<bind-xml name="codigo" node="element"/>
+   		</field>
+   		
+   		<field name="descripcion" type="java.lang.String">
+      		<bind-xml name="descripcion" node="element"/>
+   		</field>
+   		
+   		<field name="page" type="java.lang.Integer">
+      		<bind-xml name="page" node="element"/>
+   		</field>
+   		
+   		<field name="pages" type="java.lang.Integer">
+      		<bind-xml name="pages" node="element"/>
+   		</field>
+   		
+   		<field name="results" type="java.lang.Integer">
+      		<bind-xml name="results" node="element"/>
+   		</field>
+   		
+   		<field name="inmuebles" collection="array" type="castor.InmuebleImageAppFotos">
+      		<bind-xml name="inmuebles" node="element"/>
+   		</field>
+   		
+	</class>
+</mapping>
