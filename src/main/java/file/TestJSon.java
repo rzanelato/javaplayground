@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class TestJSon {
 
     public static void main(String[] args) {
         convertObjWithList();
-        oldTest();
+        //oldTest();
     }
 
     private static void convertObjWithList() {
@@ -30,14 +31,20 @@ public class TestJSon {
         String converted = new JSONArray(person.getSkills()).toString();
         System.out.println("List:\n" + converted);
         System.out.println();
+
+        List<Skill> skills = getSkillList(converted);
+        skills.forEach(System.out::println);
+    }
+
+    private static List<Skill> getSkillList(String converted) {
         try {
             ObjectMapper mapper = new ObjectMapper();
             List<Skill> skills = mapper.readValue(converted, new TypeReference<List<Skill>>() {});
             // mapper.getTypeFactory() .constructCollectionType(List.class, Skill.class)
-
-            skills.forEach(System.out::println);
+            return skills;
         } catch (JsonProcessingException e) {
             System.out.println("Error: " + e.getMessage());
+            return Collections.emptyList();
         }
     }
 
@@ -58,7 +65,6 @@ public class TestJSon {
             JSONArray docs = output.getJSONArray("archive");
 
             for (String str : JSONObject.getNames(output)) {
-
                 System.out.println(str);
             }
 
