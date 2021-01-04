@@ -85,7 +85,7 @@ public class TesteMP3_2 {
 						ID3v2_3 id3v2 =  (ID3v2_3) mp3file.getID3v2Tag();
 						
 						if(id3v2 != null){
-							System.out.println("não é null");
+							System.out.println("is not null");
 							txtartista.setText(mp3file.getID3v2Tag().getLeadArtist());
 							txttitulo.setText(mp3file.getID3v2Tag().getSongTitle());
 							
@@ -98,7 +98,7 @@ public class TesteMP3_2 {
 							System.out.println(mp3file.getID3v2Tag().getAlbumTitle());
 							
 						}else{
-							System.out.println("é null");
+							System.out.println("is null");
 							id3v2 = new ID3v2_3();
 							
 							String artista = JOptionPane.showInputDialog(null, "Arquivo");
@@ -147,10 +147,8 @@ public class TesteMP3_2 {
 							mp3file.setMp3file(novonome);
 							mp3file.save(novonome);
 						} catch (IOException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						} catch (TagException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 						

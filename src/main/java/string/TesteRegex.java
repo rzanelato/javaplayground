@@ -43,7 +43,7 @@ public class TesteRegex {
             if (filen.canWrite()) {
             		escreve.write(arquivos.toString());
             } else {
-                JOptionPane.showMessageDialog(null, "Não foi possivel gravar no arquivo: ", "Erro!", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Nao foi possivel gravar no arquivo: ", "Erro!", JOptionPane.ERROR_MESSAGE);
             }
             
             escreve.close();
@@ -109,7 +109,7 @@ public class TesteRegex {
             if (filen.canWrite()) {
             		escreve.write(arquivos.toString());
             } else {
-                JOptionPane.showMessageDialog(null, "Não foi possivel gravar no arquivo: ", "Erro!", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Nao foi possivel gravar no arquivo: ", "Erro!", JOptionPane.ERROR_MESSAGE);
             }
             
             escreve.close();
@@ -137,7 +137,7 @@ public class TesteRegex {
 		reader.close();
 		
 		Pattern pattern = Pattern.compile("[0-9a-zA-Z\\.\\w]+@[0-9a-zA-Z]+[\\.0-9a-zA-Z]*");
-		//String teste = "Eu tenho um renato.zanelato@metodista.br email que tiazinha@gmail.com.mae.pai.tia.primo. renato@zanelato.zzn.com.xx.pp é renatozanelato@yahoo.com.mt e gostaria que o java lesse ele rz84@bol.com.br enten linkin_foda@hotmail.com densse";
+		//String teste = "Eu tenho um renato.zanelato@metodista.br email que tiazinha@gmail.com.mae.pai.tia.primo. renato@zanelato.zzn.com.xx.pp e renatozanelato@yahoo.com.mt e gostaria que o java lesse ele rz84@bol.com.br enten linkin_foda@hotmail.com densse";
 		Matcher m = pattern.matcher(teste);
 		
 		while (m.find()) {
@@ -155,7 +155,7 @@ public class TesteRegex {
 		
 		//String teste = "eu gostaria de ver o filme homem aranha, fahrenheit 11 de setembro em 42 de Janeiro111 de 2010 as 1_ e 30 em 2 de cumbica";
 		
-		String teste = "Eu tenho um renato.zanelato@metodista.br email que tiazinha@gmail.com.mae.pai.tia.primo. renato@zanelato.zzn.com.xx.pp é renatozanelato@yahoo.com.mt e gostaria que o java lesse ele rz84@bol.com.br enten linkin_foda@hotmail.com densse";
+		String teste = "Eu tenho um renato.zanelato@metodista.br email que tiazinha@gmail.com.mae.pai.tia.primo. renato@zanelato.zzn.com.xx.pp e renatozanelato@yahoo.com.mt e gostaria que o java lesse ele rz84@bol.com.br enten linkin_foda@hotmail.com densse";
 		
 		//Matcher m = p.matcher(teste);
 		Matcher m = pattern.matcher(teste);

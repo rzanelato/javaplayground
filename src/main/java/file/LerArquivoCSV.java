@@ -19,7 +19,7 @@ public class LerArquivoCSV {
 	            while ((line = br.readLine()) != null) {
 	            	String[] country = line.split(cvsSplitBy);
 	            	if (count == 0) {
-	            		System.out.println("CABEÇALHO");
+	            		System.out.println("CABEÃ‡ALHO");
 	            		System.out.println("testeExcel.csv [sociedad= " + country[0] + " , identificador=" + country[1] + "]");
 	            		System.out.println("Info:");
 	            	} else {

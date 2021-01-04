@@ -7,8 +7,8 @@ import java.nio.charset.Charset;
 public class StringCodificacao {
 
 	public static void main(String[] args) {
-		String utf8 = "Coração";
-		String iso = "Coração";
+		String utf8 = "CoraÃ§Ã£o";
+		String iso = "CoraÃ§Ã£o";
 		/*
 		 * System.out.println(new String(utf8.getBytes(), "UTF-8"));
 		System.out.println(new String(iso.getBytes(), "Cp1252"));

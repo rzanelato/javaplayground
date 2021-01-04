@@ -253,7 +253,7 @@ public class TesteMoverFileRegexProperties {
 			if (filen.canWrite()) {
 				escreve.write(buffer.toString());
 			} else {
-				JOptionPane.showMessageDialog(null, "Não foi possivel gravar no arquivo: ", "Erro!", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Nao foi possivel gravar no arquivo: ", "Erro!", JOptionPane.ERROR_MESSAGE);
 			}
 			
 			escreve.close();

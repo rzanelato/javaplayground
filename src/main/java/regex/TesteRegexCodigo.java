@@ -25,7 +25,7 @@ public class TesteRegexCodigo {
 			string.matches(pat.pattern());
 			System.out.println("String: "+string);
 		     
-			//Si coincide con el patr髇 formatearemos el c骴igo son la aplicaci髇 para que tenga 5 d韌itos y le a馻diremos la aplicaci髇
+			//Si coincide con el patr贸n formatearemos el c贸digo son la aplicaci贸n para que tenga 5 d铆gitos y le a帽adiremos la aplicaci贸n
 			if (mat.matches()){
 				System.out.println("Matcher: "+mat.replaceFirst(pat.toString()));
 				String originalError = error.substring(0,3);
@@ -33,13 +33,13 @@ public class TesteRegexCodigo {
 				error=String.format("%05d", Integer.parseInt(error));				
 				error=originalError+error;
 				
-			//SI no coincide con el patr髇, miraremos si empieza por n鷐eros
+			//SI no coincide con el patr贸n, miraremos si empieza por n煤meros
 			}else {				
 				
 				Pattern patNum = Pattern.compile("^[0-9]+.*");
 				Matcher matNum = patNum.matcher(error);
 				
-				//SI empieza por n鷐eros, formatearemos el c骴igo son la aplicaci髇 para que tenga 5 d韌itos y le a馻diremos la aplicaci髇
+				//SI empieza por n煤meros, formatearemos el c贸digo son la aplicaci贸n para que tenga 5 d铆gitos y le a帽adiremos la aplicaci贸n
 				if (matNum.matches()) {					
 					
 					if (Arrays.asList(new String[]{"00000","00002","00123"}).contains(error)) {

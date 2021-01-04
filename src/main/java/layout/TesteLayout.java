@@ -334,7 +334,7 @@ public class TesteLayout extends JFrame {
 		JLabel jlnumerovideo = new JLabel("Nr");
 		jlnumerovideo.setPreferredSize(new Dimension(35,20));
 		
-		JLabel jlobsvideo = new JLabel("Observação");
+		JLabel jlobsvideo = new JLabel("ObservaÃ§ao");
 		jlobsvideo.setPreferredSize(new Dimension(320, 20));
 		
 		painelLabel.add(jlnomevideo);
@@ -586,7 +586,7 @@ public class TesteLayout extends JFrame {
 						painelAlterarNomes();
 						desabilitaBotoes();
 					}else{
-						JOptionPane.showMessageDialog(null, "Não é possivel alterar", "Aviso", JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Nao e possivel alterar", "Aviso", JOptionPane.WARNING_MESSAGE);
 						btAdicionar.setEnabled(false);
 					}
 				}catch(IndexOutOfBoundsException ex){
@@ -607,7 +607,7 @@ public class TesteLayout extends JFrame {
 						//painelLabel.setVisible(false);
 						btAdicionar.setEnabled(true);
 						
-						JOptionPane.showMessageDialog(null, "Número de legendas maior que de videos!", "Aviso", JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Numero de legendas maior que de videos!", "Aviso", JOptionPane.WARNING_MESSAGE);
 						System.out.println("Erro: "+ex.getMessage());
 					}
 				}
@@ -636,7 +636,7 @@ public class TesteLayout extends JFrame {
 					if(!nomeVideo.getText().equals("")){
 						btAlterar.setEnabled(false);
 					}else{
-						JOptionPane.showMessageDialog(null, "Campo não informado!", "Aviso", JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Campo nao informado!", "Aviso", JOptionPane.WARNING_MESSAGE);
 					}
 				}else{
 					btAlterar.setEnabled(false);

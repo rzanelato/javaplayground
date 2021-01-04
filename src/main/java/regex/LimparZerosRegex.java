@@ -14,7 +14,7 @@ public class LimparZerosRegex {
 		System.out.println(novo);
 		//System.out.println("2220002020");
 		
-		System.out.println("É valido? => "+esTextoValido(str));
+		System.out.println("isValid? => "+esTextoValido(str));
 		
 	}
 	

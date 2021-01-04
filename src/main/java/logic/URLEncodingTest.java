@@ -7,16 +7,15 @@ import java.net.URLEncoder;
 public class URLEncodingTest {
 
     public static void main(String[] args) {  
-        // TODO Auto-generated method stub  
-        String url="https%3A%2F%2Fr1---sn-ci5gup-cags.googlevideo.com%2Fvideoplayback%3Fpcm2cms%3Dyes%26mime%3Dvideo%252Fmp4%26pl%3D21%26itag%3D22%26\u0026itag=43\u0026type=video%2Fwebm%3B+codecs%3D%22vp8.0%2C+vorbis%22\u0026quality=medium";  
+        String url="https%3A%2F%2Fr1---sn-ci5gup-cags.googlevideo.com%2Fvideoplayback%3Fpcm2cms%3Dyes%26mime%3Dvideo%252Fmp4%26pl%3D21%26itag%3D22%26\u0026itag=43\u0026type=video%2Fwebm%3B+codecs%3D%22vp8.0%2C+vorbis%22\u0026quality=medium";
         String url2="https://r1---sn-ci5gup-cags.googlevideo.com/videoplayback?pcm2cms=yes&mime=video/mp4&pl=21&itag=22&&itag=43&type=video/webm; codecs=\"vp8.0, vorbis\"&quality=medium";  
         String decodeURL = decode(url);  
         System.out.println("Decoded URL: "+decodeURL);  
         String encodeURL = encode(url2);  
         System.out.println("Encoded URL2: "+encodeURL);  
         System.out.println();
-        String testeEncoding = "µáéíóú";
-        String testeEncodeUTF8 = "75µg 4% - µaáeéiíoóuú";
+        String testeEncoding = "Ã©Ã©Ã©Ã©Ã©";
+        String testeEncodeUTF8 = "75Ã©g 4% - Ã¡Ã aÃ©eÃ©iÃ³oÃºu";
         System.out.println("MeuTest : " + encode(testeEncoding));
         //System.out.println("Decode: "+decode("25%25"));
         System.out.println("Decode: "+decode(testeEncoding));
@@ -32,7 +31,7 @@ public class URLEncodingTest {
         
         
         System.out.println("encodeUTF8: " + encodeUTF8(testeEncodeUTF8));
-        System.out.println("encodeUTF8: " + encodeUTF8("µ %"));
+        System.out.println("encodeUTF8: " + encodeUTF8("Ã¡ %"));
         String resultUTF8 = encodeUTF8(testeEncodeUTF8);
         System.out.println("decodeUTF8: " + decodeUTF8(resultUTF8));
         
