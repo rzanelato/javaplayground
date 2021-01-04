@@ -3,15 +3,16 @@ package file;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.io.File;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-
-import org.apache.commons.io.FileUtils;
-import org.json.*;
+import java.util.Optional;
+import org.apache.commons.lang3.StringUtils;
+import org.json.CDL;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import pojo.Person;
 import pojo.Skill;
 
@@ -32,14 +33,25 @@ public class TestJSon {
         System.out.println("List:\n" + converted);
         System.out.println();
 
-        List<Skill> skills = getSkillList(converted);
-        skills.forEach(System.out::println);
+        getSkillList(converted).forEach(System.out::println);
+
+        System.out.println();
+        System.out.println("Empty List:");
+        getSkillList(null).forEach(System.out::println);
+        getSkillList("").forEach(System.out::println);
     }
 
     private static List<Skill> getSkillList(String converted) {
+        return Optional.ofNullable(converted)
+                       .filter(StringUtils::isNotBlank)
+                       .map(TestJSon::convertStringToList)
+                       .orElseGet(Collections::emptyList);
+    }
+
+    private static List<Skill> convertStringToList(String string) {
         try {
             ObjectMapper mapper = new ObjectMapper();
-            List<Skill> skills = mapper.readValue(converted, new TypeReference<List<Skill>>() {});
+            List<Skill> skills = mapper.readValue(string, new TypeReference<List<Skill>>() {});
             // mapper.getTypeFactory() .constructCollectionType(List.class, Skill.class)
             return skills;
         } catch (JsonProcessingException e) {
@@ -97,8 +109,8 @@ public class TestJSon {
 	        	e.printStackTrace();
 	            */
         } catch (JSONException e) {
-        //    e.printStackTrace();
-        //} catch (IOException e) {
+            //    e.printStackTrace();
+            //} catch (IOException e) {
             e.printStackTrace();
         }
     }
