@@ -3,6 +3,8 @@ package file;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
@@ -27,37 +29,68 @@ public class TestJSon {
         Person person = getPerson();
 
         JSONObject jsonObject = new JSONObject(person);
-        System.out.println("OBJ: " + jsonObject.toString());
-        System.out.println();
-        String converted = new JSONArray(person.getSkills()).toString();
-        System.out.println("List:\n" + converted);
+        System.out.println("OBJ:");
+        System.out.println(convertObjToString(person));
+        System.out.println(convertObjToString(getPerson2()));
+        System.out.println(convertObjToString(getPerson3()));
+        System.out.println(convertObjToString(getPerson4()));
+        System.out.println(convertObjToString(getPerson5()));
         System.out.println();
 
+        String converted = new JSONArray(person.getSkills()).toString();
+        System.out.println("List:");
+        System.out.println(converted);
+        System.out.println(new JSONArray(Collections.emptyList()).toString());
+        System.out.println(new Gson().toJson(person.getSkills()));
+        System.out.println(new Gson().toJson(Collections.emptyList()));
+        System.out.println();
+
+        System.out.println("List<Skill>:");
         getSkillList(converted).forEach(System.out::println);
 
         System.out.println();
         System.out.println("Empty List:");
         getSkillList(null).forEach(System.out::println);
         getSkillList("").forEach(System.out::println);
+        getSkillList("[]").forEach(System.out::println);
+        System.out.println("[END]Empty List:");
     }
 
     private static List<Skill> getSkillList(String converted) {
         return Optional.ofNullable(converted)
                        .filter(StringUtils::isNotBlank)
-                       .map(TestJSon::convertStringToList)
+                       .map(TestJSon::convertStringToListJsonObject)
                        .orElseGet(Collections::emptyList);
+    }
+
+    private static String convertObjToString(Object obj) {
+        //return jsonObjToString(obj);
+        return gsonObjToString(obj);
+    }
+
+    private static String jsonObjToString(Object obj) {
+        return new JSONObject(obj).toString();
+    }
+
+    private static String gsonObjToString(Object obj) {
+        return new Gson().toJson(obj);
     }
 
     private static List<Skill> convertStringToList(String string) {
         try {
             ObjectMapper mapper = new ObjectMapper();
-            List<Skill> skills = mapper.readValue(string, new TypeReference<List<Skill>>() {});
+            List<Skill> skills = mapper.readValue(string, new TypeReference<List<Skill>>() {
+            });
             // mapper.getTypeFactory() .constructCollectionType(List.class, Skill.class)
             return skills;
         } catch (JsonProcessingException e) {
             System.out.println("Error: " + e.getMessage());
             return Collections.emptyList();
         }
+    }
+
+    private static List<Skill> convertStringToListJsonObject(String string) {
+        return new Gson().fromJson(string, new TypeToken<List<Skill>>() {}.getType());
     }
 
     private static Person getPerson() {
@@ -68,11 +101,34 @@ public class TestJSon {
         return new Person("Zana", 36, "comedian", skills);
     }
 
+    private static Person getPerson2() {
+        Skill skill1 = new Skill("stamina", "100");
+        Skill skill2 = new Skill("power", "150");
+        Skill skill3 = new Skill("speed", "50");
+        List<Skill> skills = Arrays.asList(skill1, skill2, skill3);
+        return new Person("Zana sem ocupation", 36, null, skills);
+    }
+
+    private static Person getPerson3() {
+        return new Person("Zana sem skill", 36, "comedian", null);
+    }
+
+    private static Person getPerson4() {
+        Skill skill1 = new Skill("stamina", "100");
+        Skill skill2 = new Skill("power", "150");
+        Skill skill3 = new Skill("speed", "50");
+        List<Skill> skills = Arrays.asList(skill1, skill2, skill3);
+        return new Person("Zana sem ocupation (vazio)", 36, "", skills);
+    }
+
+    private static Person getPerson5() {
+        return new Person("Zana sem skill (emptyList)", 36, "comedian", Collections.emptyList());
+    }
+
     private static void oldTest() {
         try {
             String jsonString = jsonTeste();
-            JSONObject output;
-            output = new JSONObject(jsonString);
+            JSONObject output = new JSONObject(jsonString);
 
             JSONArray docs = output.getJSONArray("archive");
 
