@@ -65,3 +65,6 @@ build/
 
 __MACOSX/
 .DS_Store
+
+#Shell Linux
+*.sh
