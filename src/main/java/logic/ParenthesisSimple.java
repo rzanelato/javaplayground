@@ -11,7 +11,6 @@ public class ParenthesisSimple {
         String parenthesis = getOnlyParentheses(text);
         int countText =  parenthesis.length() / 2;
         for (int index = 0; index < countText; index++) {
-            System.out.println(parenthesis);
             parenthesis = parenthesis.replace("()", "");
         }
         return parenthesis.length() == 0;

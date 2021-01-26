@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 
 public class ChainMethodTest {
 
-
     @Test
     public void shouldReturnSuccess() {
         ChainMethod method = new ChainMethod();
@@ -22,7 +21,6 @@ public class ChainMethodTest {
         assertThrows(RuntimeException.class, method::chainTestSkillNull);
         Exception exception = assertThrows(RuntimeException.class, method::chainTestSkillNull);
         assertEquals("SoWrong", exception.getMessage());
-
     }
 
     @Test
@@ -31,10 +29,7 @@ public class ChainMethodTest {
 
         assertThrows(NullPointerException.class, method::chainTestNullSkill);
         Exception exception = assertThrows(NullPointerException.class, method::chainTestNullSkill);
-        assertNotNull(exception.getMessage());
-
-
+        // assertNotNull(exception.getMessage()); // Java 11
     }
-
 
 }

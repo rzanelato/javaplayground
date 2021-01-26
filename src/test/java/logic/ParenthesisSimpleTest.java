@@ -9,8 +9,8 @@ public class ParenthesisSimpleTest {
 
     @Test
     void shouldBeValid() {
-        //assertTrue(ParenthesisSimple.isValid("(if (any? x) sum (1 x))"));
-        //assertTrue(ParenthesisSimple.isValid("I said (it's not (yet) complete). (she didn't listen)"));
+        assertTrue(ParenthesisSimple.isValid("(if (any? x) sum (1 x))"));
+        assertTrue(ParenthesisSimple.isValid("I said (it's not (yet) complete). (she didn't listen)"));
         assertTrue(ParenthesisSimple.isValid("(((()))(()))"));
         assertTrue(ParenthesisSimple.isValid("(($1 and $2) or $3)"));
         assertTrue(ParenthesisSimple.isValid("$1 and $2"));
