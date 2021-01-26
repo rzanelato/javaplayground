@@ -8,7 +8,7 @@ public class ParenthesesFinal {
 	private final String REGEX = "[\\(\\)]";
 
 	public static void main(String[] args) {
-		Parentheses para = new Parentheses();
+		ParenthesesFinal para = new ParenthesesFinal();
 		
 		System.out.println("Result True: "+para.isValid("(if (any? x) sum (/1 x))"));
 		System.out.println("Result False: "+para.isValid("())("));
@@ -39,12 +39,12 @@ public class ParenthesesFinal {
 
 	private String getParentheses(String text) {
 		Pattern p = Pattern.compile(REGEX);
-	    Matcher m = p.matcher(text);
-	    String returnText = "";
-	    while (m.find()) {
-	        returnText += m.group();
-	    }
-	    return returnText;
+		Matcher m = p.matcher(text);
+		StringBuilder returnText = new StringBuilder();
+		while (m.find()) {
+			returnText.append(m.group());
+		}
+		return returnText.toString();
 	}
 
 }

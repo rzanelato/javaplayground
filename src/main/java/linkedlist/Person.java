@@ -10,7 +10,7 @@ public class Person {
 	private int passport;
 	private int id;
 	private Date arrival;
-	private static int counter = 0;
+	private int counter = 0;
 	private int priority;
 
 	public Person(String name, String surname, int passport, int priority) {
@@ -47,27 +47,22 @@ public class Person {
 	
 	public Person getNextPerson() {
 		return nextPerson;
-		
 	}
 	
 	public String getName() {
 		return name;
-		
 	}
 	
 	public String getSurname() {
 		return surname;
-		
 	}
 	
 	public int getId() {
 		return id;
-		
 	}
 	
 	public Date getArrival() {
 		return arrival;
-		
 	}
 	
 	public int getPassport() {

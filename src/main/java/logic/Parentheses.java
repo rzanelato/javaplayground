@@ -9,19 +9,19 @@ public class Parentheses {
 
     public static void main(String[] args) {
 
-        System.out.println("Result True: "+Parentheses.isValid("(if (any? x) sum (/1 x))"));
-        System.out.println("Result False: "+Parentheses.isValid("())("));
-        System.out.println("Result True: "+Parentheses.isValid("I said (it's not (yet) complete). (she didn't listen)"));
-        System.out.println("Result False: "+Parentheses.isValid(":-)"));
-        System.out.println("Result True: "+Parentheses.isValid("(((()))(()))"));
-        System.out.println("Result False: "+Parentheses.isValid("(((()))(())"));
-        System.out.println("Result True: "+Parentheses.isValid("(($1 and $2) or $3)"));
-        System.out.println("Result False: "+Parentheses.isValid("(($1 and $2) or ($3 or $1)"));
-        System.out.println("Result False: "+Parentheses.isValid("))(("));
-        System.out.println("Result False: "+Parentheses.isValid("((()()"));
-        System.out.println("Result True: "+Parentheses.isValid("$1 and $2"));
-        System.out.println("Result False: "+Parentheses.isValid("($1 and $2"));
-        System.out.println("Result False: "+Parentheses.isValid("()()))"));
+        System.out.println("Result True: " + Parentheses.isValid("(if (any? x) sum (/1 x))"));
+        System.out.println("Result False: " + Parentheses.isValid("())("));
+        System.out.println("Result True: " + Parentheses.isValid("I said (it's not (yet) complete). (she didn't listen)"));
+        System.out.println("Result False: " + Parentheses.isValid(":-)"));
+        System.out.println("Result True: " + Parentheses.isValid("(((()))(()))"));
+        System.out.println("Result False: " + Parentheses.isValid("(((()))(())"));
+        System.out.println("Result True: " + Parentheses.isValid("(($1 and $2) or $3)"));
+        System.out.println("Result False: " + Parentheses.isValid("(($1 and $2) or ($3 or $1)"));
+        System.out.println("Result False: " + Parentheses.isValid("))(("));
+        System.out.println("Result False: " + Parentheses.isValid("((()()"));
+        System.out.println("Result True: " + Parentheses.isValid("$1 and $2"));
+        System.out.println("Result False: " + Parentheses.isValid("($1 and $2"));
+        System.out.println("Result False: " + Parentheses.isValid("()()))"));
 
     }
 
@@ -37,12 +37,12 @@ public class Parentheses {
     private static String getParentheses(String text) {
         Pattern p = Pattern.compile(REGEX);
         Matcher m = p.matcher(text);
-        String returnText = "";
+        StringBuilder returnText = new StringBuilder();
 
         while (m.find()) {
-            returnText += m.group();
+            returnText.append(m.group());
         }
-        return returnText;
+        return returnText.toString();
     }
 
     private static boolean recursiveValidation(String parentheses) {

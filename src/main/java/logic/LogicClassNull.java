@@ -1,5 +1,7 @@
 package logic;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class LogicClassNull {
 
     public static void main(String[] args) {
@@ -45,7 +47,7 @@ public class LogicClassNull {
         }
         
         public boolean isEmpty() {
-            return this == null || this.getNome() == null || "".equals(this.getNome());
+            return this == null || StringUtils.isBlank(nome);
         }
 
         @Override

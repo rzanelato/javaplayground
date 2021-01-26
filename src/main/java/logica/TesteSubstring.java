@@ -19,7 +19,7 @@ public class TesteSubstring {
 		
 		
 		for (String str : list) {
-			String digito = str.substring(str.length()-1);
+			String digito = str.substring(str.length()-2);
 			System.out.println("Info: "+ str + " - ["+digito+"]" );
 			
 		}

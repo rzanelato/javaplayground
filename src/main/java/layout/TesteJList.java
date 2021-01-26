@@ -56,7 +56,7 @@ public class TesteJList extends JFrame{
 	}
 	
 	private KeyAdapter acao(final JList jListArquivos, final List<File> listArquivos) {
-		KeyAdapter key = new KeyAdapter(){
+		return new KeyAdapter() {
 			public void keyReleased(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_ENTER){
 					verificarArquivo(jListArquivos,listArquivos);
@@ -67,7 +67,6 @@ public class TesteJList extends JFrame{
 				}
 			}
 		};
-		return key;
 	}
 	
 	private void verificarArquivo(JList jListArquivos, List<File> listArquivos) {
