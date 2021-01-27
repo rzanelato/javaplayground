@@ -50,6 +50,8 @@ nbproject/private/.classpath
 *.iws
 *.iml
 *.ipr
+/shelf/
+/workspace.xml
 
 ### NetBeans ###
 /nbproject/private/
