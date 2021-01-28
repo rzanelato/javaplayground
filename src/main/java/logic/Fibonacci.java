@@ -30,7 +30,6 @@ public class Fibonacci {
     }
     public static void printIsFibonacci(int value) {
         System.out.println("[" + value + "] - " + (Fibonacci.isNumberFibonacci(value) ? "true" : ""));
-
     }
 
     public static int[] fibonacci(int count) {
@@ -46,16 +45,14 @@ public class Fibonacci {
     }
 
     public static boolean isNumberFibonacci(int number) {
-        final int[] list = new int[number+2];
+        if (number == 0 || number == 1) {
+            return true;
+        }
 
-        for (int index = 0; index < list.length; index++) {
-            if (index == 0 || index == 1) {
-                if (number == index) {
-                    return true;
-                }
-                list[index] = index;
-                continue;
-            }
+        final int[] list = new int[number+2];
+        list[0] = 0;
+        list[1] = 1;
+        for (int index = 2; index < list.length; index++) {
             int sum = list[index-1] + list[index-2];
             if (number == sum) {
                 return true;
