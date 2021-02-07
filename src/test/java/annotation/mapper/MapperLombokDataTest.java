@@ -16,7 +16,7 @@ class MapperLombokDataTest {
 
     @Test
     void shouldReturnFullDtoWhen_toDto_HasAllValues() {
-        LombokDataPojo dataPojo = new LombokDataPojo("New", "Old");
+        LombokDataPojo dataPojo = new LombokDataPojo("New", "Old", null);
         LombokData data = new LombokData("Test", "email@email.com", Collections.singletonList(dataPojo));
 
         LombokDTO dto = MapperLombokData.MAPPER.toDto(data);
@@ -64,7 +64,7 @@ class MapperLombokDataTest {
 
     @Test
     void shouldReturnFullDataWhen_toDto_HasAllValues() {
-        LombokPojo pojo = new LombokPojo("New", "Old");
+        LombokPojo pojo = new LombokPojo("New", "Old", null);
         LombokDTO dto = new LombokDTO("Test", "email@email.com", Collections.singletonList(pojo));
 
         LombokData data = MapperLombokData.MAPPER.toData(dto);

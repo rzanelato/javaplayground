@@ -9,5 +9,5 @@ public class LombokDataPojo {
 
     public String key;
     public String value;
-
+    private LombokBuilder lombok;
 }
