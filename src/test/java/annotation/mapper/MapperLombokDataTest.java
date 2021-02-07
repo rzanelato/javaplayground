@@ -5,10 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import annotation.LombokDTO;
-import annotation.LombokData;
-import annotation.LombokDataPojo;
-import annotation.LombokPojo;
+import annotation.*;
+
 import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +14,8 @@ class MapperLombokDataTest {
 
     @Test
     void shouldReturnFullDtoWhen_toDto_HasAllValues() {
-        LombokDataPojo dataPojo = new LombokDataPojo("New", "Old", null);
+        LombokBuilder lombok = LombokBuilder.builder().description("Desc").builds();
+        LombokDataPojo dataPojo = new LombokDataPojo("New", "Old", lombok);
         LombokData data = new LombokData("Test", "email@email.com", Collections.singletonList(dataPojo));
 
         LombokDTO dto = MapperLombokData.MAPPER.toDto(data);
@@ -28,6 +27,8 @@ class MapperLombokDataTest {
         assertEquals(1, dto.getPojos().size());
         assertEquals("New", dto.getPojos().get(0).getKey());
         assertEquals("Old", dto.getPojos().get(0).getValue());
+        assertNotNull(dto.getPojos().get(0).getLombok());
+        assertEquals("Desc", dto.getPojos().get(0).getLombok().getDescription());
     }
 
     @Test
@@ -76,6 +77,7 @@ class MapperLombokDataTest {
         assertEquals(1, data.getPojos().size());
         assertEquals("New", data.getPojos().get(0).getKey());
         assertEquals("Old", data.getPojos().get(0).getValue());
+        assertNull(data.getPojos().get(0).getLombok());
     }
 
     @Test
