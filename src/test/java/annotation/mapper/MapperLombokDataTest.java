@@ -14,7 +14,7 @@ class MapperLombokDataTest {
 
     @Test
     void shouldReturnFullDtoWhen_toDto_HasAllValues() {
-        LombokBuilder lombok = LombokBuilder.builder().description("Desc").builds();
+        LombokBuilder lombok = LombokBuilder.builder().description("Desc").build();
         LombokDataPojo dataPojo = new LombokDataPojo("New", "Old", lombok);
         LombokData data = new LombokData("Test", "email@email.com", Collections.singletonList(dataPojo));
 

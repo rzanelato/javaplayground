@@ -12,4 +12,5 @@ public class LombokData {
     private final String email;
     private final List<LombokDataPojo> pojos;
 
+
 }

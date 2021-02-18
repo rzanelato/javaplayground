@@ -4,12 +4,12 @@ import java.util.UUID;
 import lombok.Builder;
 import lombok.Getter;
 
+@Builder
 @Getter
-@Builder(buildMethodName = "builds")
 public class LombokBuilder {
 
-    private final UUID id;
-    private final String product;
-    private final String description;
-    private final long quantity;
+    private UUID id;
+    private String product;
+    private String description;
+    private long quantity;
 }
