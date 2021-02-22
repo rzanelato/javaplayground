@@ -14,9 +14,6 @@ public class PompCorn {
     }
     
     private static class VersionChanger {
-        
-        
-        
         static String filePathToString(String path) {
             try {
                 FileInputStream inputStrem = new FileInputStream(new File(path));
