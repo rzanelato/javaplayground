@@ -17,4 +17,8 @@ public class GetLastElementStream {
         return list.stream().reduce((first, second) -> second).orElse(null);
     }
 
+    public static <T> T getLastElementMax(List<T> list, Comparator<T> comparator) {
+        return list.stream().max(comparator).orElse(null);
+    }
+
 }
