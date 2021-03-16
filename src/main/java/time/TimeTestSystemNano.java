@@ -1,5 +1,7 @@
 package time;
 
+import java.util.concurrent.TimeUnit;
+
 public class TimeTestSystemNano {
     
     private static final long NANO_TO_SECONDS = 1000000000;
@@ -11,6 +13,8 @@ public class TimeTestSystemNano {
         
         System.out.println("Time nano: " + time);
         System.out.println("Time to Seconds: " + timeToSeconds);
+
+        System.out.println("Java Seconds: " + TimeUnit.SECONDS.toMillis(3));
 
     }
 
